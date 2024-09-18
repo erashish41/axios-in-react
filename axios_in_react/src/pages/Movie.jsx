@@ -1,6 +1,7 @@
-import axios from "axios"
+
 import { useEffect, useState } from "react";
 import { Card } from "../component/UI/Card";
+import { getMovie } from "../services/GetService";
 
 
 
@@ -8,11 +9,9 @@ const Movie = () => {
 
     const [movie, setMovie] = useState([]);
 
-    const API = "https://www.omdbapi.com/?i=tt3896198&apikey=1c12799f&s=titanic&page=1";
-
     const getMovieData = async () =>{
         try {
-            const res = await axios.get(API);
+            const res = await getMovie();
             console.log(res.data.Search);
             setMovie(res.data.Search);
         }catch(error) {
